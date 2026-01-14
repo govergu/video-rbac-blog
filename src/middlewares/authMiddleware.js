@@ -16,6 +16,10 @@ exports.authMiddleware = async (req, res, next) => {
 
   if (!user) return res.status(404).json("User not Found");
 
+  if (user.isBanned) {
+    return next(new AppError(403, "The User is Banned"));
+  }
+
   req.user = user;
   next();
 };

@@ -27,6 +27,10 @@ app.use("/api/blogs", blogRoute);
 const commentRoute = require("./routes/comment.routes");
 app.use("/api/blogs/comment", commentRoute);
 
+//Admin routes
+const adminRoute = require("./routes/admin/users.admin.routes");
+app.use("/api/admin/users", adminRoute);
+
 const errorHandler = require("./middlewares/errorHandler");
 app.use(errorHandler);
 
