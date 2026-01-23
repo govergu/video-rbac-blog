@@ -28,8 +28,11 @@ const commentRoute = require("./routes/comment.routes");
 app.use("/api/blogs/comment", commentRoute);
 
 //Admin routes
-const adminRoute = require("./routes/admin/users.admin.routes");
-app.use("/api/admin/users", adminRoute);
+const adminUserRoute = require("./routes/admin/users.admin.routes");
+app.use("/api/admin/users", adminUserRoute);
+
+const adminBlogRoute = require("./routes/admin/blogs.admin.routes");
+app.use("/api/admin/blogs", adminBlogRoute);
 
 const errorHandler = require("./middlewares/errorHandler");
 app.use(errorHandler);

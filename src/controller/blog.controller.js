@@ -3,7 +3,7 @@ const AppError = require("../utils/appError");
 
 exports.getAllBlogs = async (req, res, next) => {
   try {
-    const blogs = await Blog.find();
+    const blogs = await Blog.find({ isDeleted: false });
     if (blogs.length === 0)
       return next(new AppError(404, "Blogs not available"));
 
@@ -20,6 +20,8 @@ exports.getBlogById = async (req, res, next) => {
     const blog = await Blog.findById(id);
 
     if (!blog) return next(new AppError(404, "Blog not available"));
+    if ((blog.isDeleted = true))
+      return next(new AppError(400, "Blog has been Deleted"));
 
     res.status(200).json({ blog });
   } catch (error) {
